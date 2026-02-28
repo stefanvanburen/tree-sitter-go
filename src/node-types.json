@@ -264,20 +264,6 @@
     ]
   },
   {
-    "type": "_type",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "_simple_type",
-        "named": true
-      },
-      {
-        "type": "parenthesized_type",
-        "named": true
-      }
-    ]
-  },
-  {
     "type": "argument_list",
     "named": true,
     "fields": {},
@@ -290,7 +276,11 @@
           "named": true
         },
         {
-          "type": "_type",
+          "type": "_simple_type",
+          "named": true
+        },
+        {
+          "type": "parenthesized_type",
           "named": true
         },
         {
@@ -309,7 +299,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -589,7 +583,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -718,7 +716,11 @@
         "required": false,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -939,19 +941,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
             "named": true
           },
           {
-            "type": "generic_type",
-            "named": true
-          },
-          {
-            "type": "qualified_type",
-            "named": true
-          },
-          {
-            "type": "type_identifier",
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -1296,7 +1290,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -1553,7 +1551,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -1563,7 +1565,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -1689,7 +1695,11 @@
       "required": true,
       "types": [
         {
-          "type": "_type",
+          "type": "_simple_type",
+          "named": true
+        },
+        {
+          "type": "parenthesized_type",
           "named": true
         }
       ]
@@ -1729,7 +1739,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -1779,7 +1793,11 @@
       "required": true,
       "types": [
         {
-          "type": "_type",
+          "type": "_simple_type",
+          "named": true
+        },
+        {
+          "type": "parenthesized_type",
           "named": true
         }
       ]
@@ -1794,7 +1812,11 @@
       "required": true,
       "types": [
         {
-          "type": "_type",
+          "type": "_simple_type",
+          "named": true
+        },
+        {
+          "type": "parenthesized_type",
           "named": true
         }
       ]
@@ -2060,7 +2082,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -2148,7 +2174,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -2199,7 +2229,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -2219,7 +2253,11 @@
             "named": false
           },
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -2245,7 +2283,11 @@
       "required": true,
       "types": [
         {
-          "type": "_type",
+          "type": "_simple_type",
+          "named": true
+        },
+        {
+          "type": "parenthesized_type",
           "named": true
         }
       ]
@@ -2345,7 +2387,11 @@
       "required": true,
       "types": [
         {
-          "type": "_type",
+          "type": "_simple_type",
+          "named": true
+        },
+        {
+          "type": "parenthesized_type",
           "named": true
         }
       ]
@@ -2360,7 +2406,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -2371,7 +2421,11 @@
       "required": true,
       "types": [
         {
-          "type": "_type",
+          "type": "_simple_type",
+          "named": true
+        },
+        {
+          "type": "parenthesized_type",
           "named": true
         }
       ]
@@ -2437,7 +2491,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -2592,7 +2650,11 @@
         "required": false,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
@@ -2658,7 +2720,11 @@
         "required": true,
         "types": [
           {
-            "type": "_type",
+            "type": "_simple_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           }
         ]
