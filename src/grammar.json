@@ -4208,6 +4208,15 @@
                 {
                   "type": "SYMBOL",
                   "name": "qualified_type"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_builtin_qualified_type"
+                  },
+                  "named": true,
+                  "value": "qualified_type"
                 }
               ]
             }
@@ -4222,6 +4231,45 @@
           }
         ]
       }
+    },
+    "_builtin_qualified_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "package",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "new"
+                },
+                {
+                  "type": "STRING",
+                  "value": "make"
+                }
+              ]
+            },
+            "named": true,
+            "value": "package_identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type_identifier"
+          }
+        }
+      ]
     },
     "literal_value": {
       "type": "SEQ",
@@ -7189,6 +7237,10 @@
     ],
     [
       "_builtin_callee",
+      "_expression"
+    ],
+    [
+      "_builtin_qualified_type",
       "_expression"
     ]
   ],

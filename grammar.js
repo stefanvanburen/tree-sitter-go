@@ -95,6 +95,7 @@ module.exports = grammar({
     [$.type_parameter_declaration, $._expression],
     [$.type_parameter_declaration, $._simple_type, $.generic_type, $._expression],
     [$._builtin_callee, $._expression],
+    [$._builtin_qualified_type, $._expression],
   ],
 
   reserved: {
@@ -815,9 +816,19 @@ module.exports = grammar({
         $._type_identifier,
         $.generic_type,
         $.qualified_type,
+        // A composite literal starts where an expression can, and there `new`
+        // and `make` lex as keywords rather than identifiers, so a package with
+        // either name needs its own qualified type.
+        alias($._builtin_qualified_type, $.qualified_type),
       )),
       field('body', $.literal_value),
     )),
+
+    _builtin_qualified_type: $ => seq(
+      field('package', alias(choice('new', 'make'), $.package_identifier)),
+      '.',
+      field('name', $._type_identifier),
+    ),
 
     literal_value: $ => seq(
       '{',

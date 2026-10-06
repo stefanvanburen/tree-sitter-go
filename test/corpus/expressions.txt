@@ -796,3 +796,42 @@ func f() {
             (identifier))
           (expression_list
             (identifier)))))))
+
+================================================================================
+Composite literals of types from packages named new or make
+================================================================================
+
+package main
+
+var _ = new.Options{}
+var _ = &make.Options{A: 1}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (package_clause
+    (package_identifier))
+  (var_declaration
+    (var_spec
+      (identifier)
+      (expression_list
+        (composite_literal
+          (qualified_type
+            (package_identifier)
+            (type_identifier))
+          (literal_value)))))
+  (var_declaration
+    (var_spec
+      (identifier)
+      (expression_list
+        (unary_expression
+          (composite_literal
+            (qualified_type
+              (package_identifier)
+              (type_identifier))
+            (literal_value
+              (keyed_element
+                (literal_element
+                  (identifier))
+                (literal_element
+                  (int_literal))))))))))
