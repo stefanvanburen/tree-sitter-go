@@ -439,9 +439,10 @@ module.exports = grammar({
       seq('chan', '<-', field('value', $._type)),
     )),
 
+    // Like `T(x)`, `T[U](x)` cannot be told apart from a call without type
+    // information, so it is left to `call_expression`.
     _conversion_type: $ => choice(
       prec.dynamic(-1, $._type_identifier),
-      $.generic_type,
       $.qualified_type,
       $.struct_type,
       $.interface_type,

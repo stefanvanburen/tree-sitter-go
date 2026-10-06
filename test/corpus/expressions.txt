@@ -104,39 +104,38 @@ func main() {
     (block
       (statement_list
         (expression_statement
-          (type_conversion_expression
-            (generic_type
-              (type_identifier)
-              (type_arguments
-                (type_elem
-                  (type_identifier))))
-            (identifier)))
-        (expression_statement
-          (type_conversion_expression
-            (generic_type
-              (type_identifier)
-              (type_arguments
-                (type_elem
-                  (type_identifier))
-                (type_elem
-                  (type_identifier))))
-            (identifier)))
-        (expression_statement
-          (type_conversion_expression
-            (generic_type
-              (type_identifier)
-              (type_arguments
-                (type_elem
-                  (generic_type
-                    (type_identifier)
-                    (type_arguments
-                      (type_elem
-                        (type_identifier)))))
-                (type_elem
-                  (type_identifier))))
+          (call_expression
             (index_expression
               (identifier)
-              (identifier))))))))
+              (identifier))
+            (argument_list
+              (identifier))))
+        (expression_statement
+          (call_expression
+            (identifier)
+            (type_arguments
+              (type_elem
+                (type_identifier))
+              (type_elem
+                (type_identifier)))
+            (argument_list
+              (identifier))))
+        (expression_statement
+          (call_expression
+            (identifier)
+            (type_arguments
+              (type_elem
+                (generic_type
+                  (type_identifier)
+                  (type_arguments
+                    (type_elem
+                      (type_identifier)))))
+              (type_elem
+                (type_identifier)))
+            (argument_list
+              (index_expression
+                (identifier)
+                (identifier)))))))))
 
 ================================================================================
 Calls to 'make' and 'new'

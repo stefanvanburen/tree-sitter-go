@@ -11,6 +11,18 @@
   function: (selector_expression
     field: (field_identifier) @function.method))
 
+; `f[T](x)` is a call to a generic function, unless `f` holds functions and
+; `T` is an index; the two are indistinguishable without type information.
+
+(call_expression
+  function: (index_expression
+    operand: (identifier) @function))
+
+(call_expression
+  function: (index_expression
+    operand: (selector_expression
+      field: (field_identifier) @function.method)))
+
 ; Function definitions
 
 (function_declaration

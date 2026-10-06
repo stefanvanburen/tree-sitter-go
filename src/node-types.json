@@ -2282,10 +2282,6 @@
             "named": true
           },
           {
-            "type": "generic_type",
-            "named": true
-          },
-          {
             "type": "interface_type",
             "named": true
           },
