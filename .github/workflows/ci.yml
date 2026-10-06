@@ -56,8 +56,8 @@ jobs:
             examples/go/src/cmd/compile/internal/syntax/testdata/*.go
             examples/go/src/cmd/compile/internal/types2/testdata/local/issue47996.go
             examples/go/src/cmd/compile/internal/types2/testdata/local/issue68183.go
+            examples/go/src/cmd/cover/testdata/ranges/ranges.go
             examples/go/src/go/parser/testdata/issue42951/not_a_file.go/invalid.go
-            examples/go/src/encoding/json/v2/arshal_test.go
             examples/go/src/internal/types/testdata/**/*.go
             examples/go/test/bombad.go
             examples/go/test/const2.go
