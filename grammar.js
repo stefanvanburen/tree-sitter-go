@@ -87,11 +87,12 @@ module.exports = grammar({
   conflicts: $ => [
     [$._simple_type, $._expression],
     [$._simple_type, $.generic_type, $._expression],
+    [$._conversion_type, $._expression],
+    [$.type_parameter_declaration, $._conversion_type, $._expression],
     [$.qualified_type, $._expression],
     [$.generic_type, $._simple_type],
     [$.parameter_declaration, $._simple_type],
     [$.type_parameter_declaration, $._simple_type],
-    [$.type_parameter_declaration, $._simple_type, $._expression],
     [$.type_parameter_declaration, $._expression],
     [$.type_parameter_declaration, $._simple_type, $.generic_type, $._expression],
     [$._builtin_callee, $._expression],
@@ -428,11 +429,30 @@ module.exports = grammar({
       field('value', $._type),
     )),
 
-    channel_type: $ => prec.left(choice(
+    channel_type: $ => choice(
+      $._bidirectional_or_send_channel_type,
+      prec.left(PREC.unary, seq('<-', 'chan', field('value', $._type))),
+    ),
+
+    _bidirectional_or_send_channel_type: $ => prec.left(choice(
       seq('chan', field('value', $._type)),
       seq('chan', '<-', field('value', $._type)),
-      prec(PREC.unary, seq('<-', 'chan', field('value', $._type))),
     )),
+
+    _conversion_type: $ => choice(
+      prec.dynamic(-1, $._type_identifier),
+      $.generic_type,
+      $.qualified_type,
+      $.struct_type,
+      $.interface_type,
+      $.array_type,
+      $.slice_type,
+      prec.dynamic(3, $.map_type),
+      alias($._bidirectional_or_send_channel_type, $.channel_type),
+      $.function_type,
+      $.negated_type,
+      $.parenthesized_type,
+    ),
 
     function_type: $ => prec.right(seq(
       'func',
@@ -790,8 +810,10 @@ module.exports = grammar({
       ')',
     )),
 
+    // A conversion's type is parenthesized if it starts with `*` or `<-`:
+    // https://go.dev/ref/spec#Conversions
     type_conversion_expression: $ => prec.dynamic(-1, seq(
-      field('type', $._type),
+      field('type', $._conversion_type),
       '(',
       field('operand', $._expression),
       optional(','),

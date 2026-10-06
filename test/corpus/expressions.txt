@@ -359,7 +359,7 @@ package main
 func main() {
   _ = []a.b(c.d)
   _ = ([]a.b)(c.d)
-  _ = <-chan int(c) // conversion to channel type
+  _ = <-chan int(c) // receive from a conversion to channel type
   <-(chan int(c)) // receive statement
   // These type conversions cannot be distinguished from call expressions
   T(x)
@@ -407,10 +407,11 @@ func main() {
           (expression_list
             (identifier))
           (expression_list
-            (type_conversion_expression
-              (channel_type
-                (type_identifier))
-              (identifier))))
+            (unary_expression
+              (type_conversion_expression
+                (channel_type
+                  (type_identifier))
+                (identifier)))))
         (comment)
         (expression_statement
           (unary_expression
@@ -835,3 +836,59 @@ var _ = &make.Options{A: 1}
                   (identifier))
                 (literal_element
                   (int_literal))))))))))
+
+================================================================================
+Unary operators applied to conversions
+================================================================================
+
+package main
+
+func main() {
+  _ = *(*[]byte)(p) // dereference of a conversion to *[]byte
+  _ = *Point(p)     // same as *(Point(p))
+  _ = (*Point)(p)   // conversion to *Point
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (package_clause
+    (package_identifier))
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (statement_list
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (unary_expression
+              (type_conversion_expression
+                (parenthesized_type
+                  (pointer_type
+                    (slice_type
+                      (type_identifier))))
+                (identifier)))))
+        (comment)
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (unary_expression
+              (call_expression
+                (identifier)
+                (argument_list
+                  (identifier))))))
+        (comment)
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (parenthesized_expression
+                (unary_expression
+                  (identifier)))
+              (argument_list
+                (identifier)))))
+        (comment)))))

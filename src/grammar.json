@@ -2014,6 +2014,40 @@
       }
     },
     "channel_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_bidirectional_or_send_channel_type"
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 6,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "<-"
+              },
+              {
+                "type": "STRING",
+                "value": "chan"
+              },
+              {
+                "type": "FIELD",
+                "name": "value",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_type"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "_bidirectional_or_send_channel_type": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -2056,34 +2090,75 @@
                 }
               }
             ]
-          },
-          {
-            "type": "PREC",
-            "value": 6,
-            "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "<-"
-                },
-                {
-                  "type": "STRING",
-                  "value": "chan"
-                },
-                {
-                  "type": "FIELD",
-                  "name": "value",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "_type"
-                  }
-                }
-              ]
-            }
           }
         ]
       }
+    },
+    "_conversion_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PREC_DYNAMIC",
+          "value": -1,
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type_identifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "generic_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "qualified_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "struct_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "interface_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "array_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "slice_type"
+        },
+        {
+          "type": "PREC_DYNAMIC",
+          "value": 3,
+          "content": {
+            "type": "SYMBOL",
+            "name": "map_type"
+          }
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_bidirectional_or_send_channel_type"
+          },
+          "named": true,
+          "value": "channel_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "negated_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parenthesized_type"
+        }
+      ]
     },
     "function_type": {
       "type": "PREC_RIGHT",
@@ -4069,7 +4144,7 @@
             "name": "type",
             "content": {
               "type": "SYMBOL",
-              "name": "_type"
+              "name": "_conversion_type"
             }
           },
           {
@@ -7205,6 +7280,15 @@
       "_expression"
     ],
     [
+      "_conversion_type",
+      "_expression"
+    ],
+    [
+      "type_parameter_declaration",
+      "_conversion_type",
+      "_expression"
+    ],
+    [
       "qualified_type",
       "_expression"
     ],
@@ -7219,11 +7303,6 @@
     [
       "type_parameter_declaration",
       "_simple_type"
-    ],
-    [
-      "type_parameter_declaration",
-      "_simple_type",
-      "_expression"
     ],
     [
       "type_parameter_declaration",
