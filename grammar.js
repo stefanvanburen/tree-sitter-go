@@ -97,6 +97,7 @@ module.exports = grammar({
     [$.type_parameter_declaration, $._simple_type, $.generic_type, $._expression],
     [$._builtin_callee, $._expression],
     [$._builtin_qualified_type, $._expression],
+    [$.type_instantiation_expression, $._expression],
   ],
 
   reserved: {
@@ -820,13 +821,16 @@ module.exports = grammar({
       ')',
     )),
 
-    type_instantiation_expression: $ => prec.dynamic(-1, seq(
-      field('type', $._type),
-      '[',
-      commaSep1($._type),
-      optional(','),
-      ']',
-    )),
+    type_instantiation_expression: $ => {
+      const typeArguments = seq('[', commaSep1($._type), optional(','), ']');
+      return choice(
+        prec.dynamic(-1, seq(field('type', $._type), typeArguments)),
+        // A generic method value, such as `S{}.m[T, U]`. Where the operand
+        // could also be a qualified type, as in `x.m[T, U]`, that reading is
+        // kept.
+        prec.dynamic(-2, seq(field('operand', $.selector_expression), typeArguments)),
+      );
+    },
 
     composite_literal: $ => prec(PREC.composite_literal, seq(
       field('type', choice(

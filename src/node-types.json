@@ -2401,9 +2401,19 @@
     "type": "type_instantiation_expression",
     "named": true,
     "fields": {
+      "operand": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "selector_expression",
+            "named": true
+          }
+        ]
+      },
       "type": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "_simple_type",
