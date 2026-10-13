@@ -210,9 +210,9 @@ module.exports = grammar({
       choice(
         seq(
           field('type', $._type),
-          optional(seq('=', field('value', $.expression_list))),
+          optional(seq('=', field('value', alias($._value_list, $.expression_list)))),
         ),
-        seq('=', field('value', $.expression_list)),
+        seq('=', field('value', alias($._value_list, $.expression_list))),
       ),
     ),
 
@@ -302,6 +302,13 @@ module.exports = grammar({
     field_name_list: $ => commaSep1($._field_identifier),
 
     expression_list: $ => commaSep1($._expression),
+
+    // A value is an expression, or a composite literal whose type is inferred
+    // from context. Values appear only where a statement cannot start, so a
+    // bare `{` there is never a block.
+    _value: $ => choice($._expression, $.literal_value),
+
+    _value_list: $ => commaSep1($._value),
 
     _type: $ => choice(
       $._simple_type,
@@ -515,7 +522,7 @@ module.exports = grammar({
     send_statement: $ => seq(
       field('channel', $._expression),
       '<-',
-      field('value', $._expression),
+      field('value', $._value),
     ),
 
     receive_statement: $ => seq(
@@ -539,7 +546,7 @@ module.exports = grammar({
     assignment_statement: $ => seq(
       field('left', $.expression_list),
       field('operator', choice(...assignmentOperators)),
-      field('right', $.expression_list),
+      field('right', alias($._value_list, $.expression_list)),
     ),
 
     short_var_declaration: $ => seq(
@@ -572,7 +579,7 @@ module.exports = grammar({
 
     goto_statement: $ => seq('goto', alias($.identifier, $.label_name)),
 
-    return_statement: $ => seq('return', optional($.expression_list)),
+    return_statement: $ => seq('return', optional(alias($._value_list, $.expression_list))),
 
     go_statement: $ => seq('go', $._expression),
 
@@ -763,8 +770,8 @@ module.exports = grammar({
     argument_list: $ => seq(
       '(',
       optional(seq(
-        choice($._expression, $.variadic_argument),
-        repeat(seq(',', choice($._expression, $.variadic_argument))),
+        choice($._value, $.variadic_argument),
+        repeat(seq(',', choice($._value, $.variadic_argument))),
         optional(','),
       )),
       ')',
@@ -779,7 +786,7 @@ module.exports = grammar({
     index_expression: $ => prec(PREC.primary, prec.dynamic(1, seq(
       field('operand', $._expression),
       '[',
-      field('index', $._expression),
+      field('index', $._value),
       ']',
     ))),
 
@@ -865,7 +872,7 @@ module.exports = grammar({
       '}',
     ),
 
-    literal_element: $ => choice($._expression, $.literal_value),
+    literal_element: $ => $._value,
 
     // In T{k: v}, the key k may be:
     // - any expression (when T is a map, slice or array),

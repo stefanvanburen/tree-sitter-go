@@ -280,6 +280,10 @@
           "named": true
         },
         {
+          "type": "literal_value",
+          "named": true
+        },
+        {
           "type": "parenthesized_type",
           "named": true
         },
@@ -844,6 +848,10 @@
         {
           "type": "_expression",
           "named": true
+        },
+        {
+          "type": "literal_value",
+          "named": true
         }
       ]
     }
@@ -1398,6 +1406,10 @@
         "types": [
           {
             "type": "_expression",
+            "named": true
+          },
+          {
+            "type": "literal_value",
             "named": true
           }
         ]
@@ -2003,6 +2015,10 @@
         "types": [
           {
             "type": "_expression",
+            "named": true
+          },
+          {
+            "type": "literal_value",
             "named": true
           }
         ]

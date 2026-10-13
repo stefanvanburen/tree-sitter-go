@@ -512,8 +512,13 @@
                           "type": "FIELD",
                           "name": "value",
                           "content": {
-                            "type": "SYMBOL",
-                            "name": "expression_list"
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "_value_list"
+                            },
+                            "named": true,
+                            "value": "expression_list"
                           }
                         }
                       ]
@@ -536,8 +541,13 @@
                   "type": "FIELD",
                   "name": "value",
                   "content": {
-                    "type": "SYMBOL",
-                    "name": "expression_list"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_value_list"
+                    },
+                    "named": true,
+                    "value": "expression_list"
                   }
                 }
               ]
@@ -1291,6 +1301,44 @@
               {
                 "type": "SYMBOL",
                 "name": "_expression"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "literal_value"
+        }
+      ]
+    },
+    "_value_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_value"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_value"
               }
             ]
           }
@@ -2456,7 +2504,7 @@
           "name": "value",
           "content": {
             "type": "SYMBOL",
-            "name": "_expression"
+            "name": "_value"
           }
         }
       ]
@@ -2606,8 +2654,13 @@
           "type": "FIELD",
           "name": "right",
           "content": {
-            "type": "SYMBOL",
-            "name": "expression_list"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_value_list"
+            },
+            "named": true,
+            "value": "expression_list"
           }
         }
       ]
@@ -2792,8 +2845,13 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "expression_list"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_value_list"
+              },
+              "named": true,
+              "value": "expression_list"
             },
             {
               "type": "BLANK"
@@ -3894,7 +3952,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "_expression"
+                      "name": "_value"
                     },
                     {
                       "type": "SYMBOL",
@@ -3916,7 +3974,7 @@
                         "members": [
                           {
                             "type": "SYMBOL",
-                            "name": "_expression"
+                            "name": "_value"
                           },
                           {
                             "type": "SYMBOL",
@@ -4020,7 +4078,7 @@
               "name": "index",
               "content": {
                 "type": "SYMBOL",
-                "name": "_expression"
+                "name": "_value"
               }
             },
             {
@@ -4564,17 +4622,8 @@
       ]
     },
     "literal_element": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "literal_value"
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "_value"
     },
     "keyed_element": {
       "type": "SEQ",
