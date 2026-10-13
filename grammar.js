@@ -581,7 +581,7 @@ module.exports = grammar({
     if_statement: $ => seq(
       'if',
       optional(seq(
-        field('initializer', $._simple_statement),
+        optional(field('initializer', $._simple_statement)),
         ';',
       )),
       field('condition', $._expression),
@@ -618,7 +618,7 @@ module.exports = grammar({
     expression_switch_statement: $ => seq(
       'switch',
       optional(seq(
-        field('initializer', $._simple_statement),
+        optional(field('initializer', $._simple_statement)),
         ';',
       )),
       field('value', optional($._expression)),
@@ -650,7 +650,7 @@ module.exports = grammar({
 
     _type_switch_header: $ => seq(
       optional(seq(
-        field('initializer', $._simple_statement),
+        optional(field('initializer', $._simple_statement)),
         ';',
       )),
       optional(seq(field('alias', $.expression_list), ':=')),

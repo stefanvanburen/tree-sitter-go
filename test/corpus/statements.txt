@@ -802,6 +802,34 @@ func main() {
               label: (label_name))))))))
 
 ================================================================================
+Empty initializers
+================================================================================
+
+func main() {
+	if ; true {
+	}
+	switch ; {
+	}
+	switch ; x.(type) {
+	}
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (statement_list
+        (if_statement
+          (true)
+          (block))
+        (expression_switch_statement)
+        (type_switch_statement
+          (identifier))))))
+
+================================================================================
 Empty statements
 ================================================================================
 
