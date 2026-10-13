@@ -3,11 +3,19 @@ name: Lint
 on:
   push:
     branches: [master]
-    paths:
-      - grammar.js
+    paths-ignore:
+      - README.md
+      - LICENSE
+      - .editorconfig
+      - .gitattributes
+      - .gitignore
   pull_request:
-    paths:
-      - grammar.js
+    paths-ignore:
+      - README.md
+      - LICENSE
+      - .editorconfig
+      - .gitattributes
+      - .gitignore
 
 jobs:
   lint:
