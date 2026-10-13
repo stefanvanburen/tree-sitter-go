@@ -553,13 +553,13 @@ module.exports = grammar({
     labeled_statement: $ => seq(
       field('label', alias($.identifier, $.label_name)),
       ':',
-      $._statement,
+      choice($._statement, alias($.empty_labeled_statement, $.labeled_statement)),
     ),
 
-    empty_labeled_statement: $ => seq(
+    empty_labeled_statement: $ => prec(-1, seq(
       field('label', alias($.identifier, $.label_name)),
       ':',
-    ),
+    )),
 
     // This is a hack to prevent `fallthrough_statement` from being parsed as
     // a single token. For consistency with `break_statement` etc it should
