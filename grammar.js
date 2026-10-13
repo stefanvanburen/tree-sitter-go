@@ -771,7 +771,7 @@ module.exports = grammar({
     ),
 
     selector_expression: $ => prec(PREC.primary, seq(
-      field('operand', $._expression),
+      field('operand', choice($._expression, $.interface_type, $.struct_type)),
       '.',
       field('field', $._field_identifier),
     )),

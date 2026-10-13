@@ -3920,8 +3920,21 @@
             "type": "FIELD",
             "name": "operand",
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "interface_type"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "struct_type"
+                }
+              ]
             }
           },
           {

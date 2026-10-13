@@ -66,7 +66,6 @@ jobs:
             examples/go/test/import5.go
             examples/go/test/makenew.go
             examples/go/test/method4.dir/prog.go
-            examples/go/test/method7.go
             examples/go/test/slice3err.go
             examples/go/test/switch2.go
             examples/go/test/syntax/chan.go

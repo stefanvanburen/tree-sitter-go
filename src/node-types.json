@@ -1970,6 +1970,14 @@
           {
             "type": "_expression",
             "named": true
+          },
+          {
+            "type": "interface_type",
+            "named": true
+          },
+          {
+            "type": "struct_type",
+            "named": true
           }
         ]
       }
