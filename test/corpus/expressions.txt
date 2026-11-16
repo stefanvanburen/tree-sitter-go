@@ -1007,9 +1007,17 @@ var p Point = {1, 2}
 
 func f() (T, error) {
 	p = {1, 2}
+	a, b = {1}, {2}
 	g(42, {}, {X: 1})
 	_ = m[{0, 0}]
 	ch <- {}
+	select {
+	case ch <- {}:
+	}
+	if p = {1}; ok {
+	}
+	for p = {}; ok; p = {1} {
+	}
 	{
 		a, b = 1, 2
 	}
@@ -1052,6 +1060,17 @@ func f() (T, error) {
                 (int_literal))
               (literal_element
                 (int_literal)))))
+        (assignment_statement
+          (expression_list
+            (identifier)
+            (identifier))
+          (expression_list
+            (literal_value
+              (literal_element
+                (int_literal)))
+            (literal_value
+              (literal_element
+                (int_literal)))))
         (expression_statement
           (call_expression
             (identifier)
@@ -1078,6 +1097,37 @@ func f() (T, error) {
         (send_statement
           (identifier)
           (literal_value))
+        (select_statement
+          (communication_case
+            (send_statement
+              (identifier)
+              (literal_value))))
+        (if_statement
+          (assignment_statement
+            (expression_list
+              (identifier))
+            (expression_list
+              (literal_value
+                (literal_element
+                  (int_literal)))))
+          (identifier)
+          (block))
+        (for_statement
+          (for_clause
+            (assignment_statement
+              (expression_list
+                (identifier))
+              (expression_list
+                (literal_value)))
+            (identifier)
+            (assignment_statement
+              (expression_list
+                (identifier))
+              (expression_list
+                (literal_value
+                  (literal_element
+                    (int_literal))))))
+          (block))
         (block
           (statement_list
             (assignment_statement
